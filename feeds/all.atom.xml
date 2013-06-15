@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Paylogic development portal</title><link href="http://developer.paylogic.com/" rel="alternate"></link><link href="http://developer.paylogic.com/feeds/all.atom.xml" rel="self"></link><id>http://developer.paylogic.com/</id><updated>2013-05-30T01:08:00+02:00</updated><entry><title>Continuous Delivery</title><link href="http://developer.paylogic.com/articles/continuous-delivery.html" rel="alternate"></link><updated>2013-05-30T01:08:00+02:00</updated><author><name>Òscar Vilaplana</name></author><id>tag:developer.paylogic.com,2013-05-30:articles/continuous-delivery.html</id><summary type="html">&lt;div class="section" id="continuous-delivery"&gt;
-&lt;h2&gt;Continuous Delivery&lt;/h2&gt;
-&lt;p&gt;&lt;em&gt;When you do Continuous Delivery you can deploy whenever you want: you
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Paylogic development portal</title><link href="http://developer.paylogic.com/" rel="alternate"></link><link href="http://developer.paylogic.com/feeds/all.atom.xml" rel="self"></link><id>http://developer.paylogic.com/</id><updated>2013-05-30T01:08:00+02:00</updated><entry><title>Continuous Delivery</title><link href="http://developer.paylogic.com/articles/continuous-delivery.html" rel="alternate"></link><updated>2013-05-30T01:08:00+02:00</updated><author><name>Òscar Vilaplana</name></author><id>tag:developer.paylogic.com,2013-05-30:articles/continuous-delivery.html</id><summary type="html">&lt;p&gt;&lt;em&gt;When you do Continuous Delivery you can deploy whenever you want: you
 made it as easy as possible and you have become very good at it.
 Everyone in the Engineering and Operations teams knows how to deploy
 your application to any environment. Product can always see the latest
@@ -18,25 +16,25 @@ environment that is as close as possible to Production;
 backwards-compatible database changes; easy rollbacks; code that is
 split into components; good tests…&lt;/em&gt;&lt;/p&gt;
 &lt;div class="section" id="taming-the-software-lion"&gt;
-&lt;h3&gt;Taming the Software Lion&lt;/h3&gt;
+&lt;h2&gt;Taming the Software Lion&lt;/h2&gt;
 &lt;div class="section" id="s"&gt;
-&lt;h4&gt;1800s&lt;/h4&gt;
+&lt;h3&gt;1800s&lt;/h3&gt;
 &lt;p&gt;It’s the 1800s. The lion is beaten into submission through fear, brute
 force and confusion. That famous tamer wielding a chair—the lion is not
 scared of the chair, it’s confused of it: why is this chair floating
 here? And why is this guy holding it?&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="modern-times"&gt;
-&lt;h4&gt;Modern times&lt;/h4&gt;
+&lt;h3&gt;Modern times&lt;/h3&gt;
 &lt;p&gt;Nowadays tamers understand the lion’s psychology. They condition the
 lion to behave as they want, they tie behaviors to signals and reward
 the right behaviors. They build up trust.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="taming-the-software-lionrecap"&gt;
-&lt;h3&gt;Taming the Software Lion—recap&lt;/h3&gt;
+&lt;h2&gt;Taming the Software Lion—recap&lt;/h2&gt;
 &lt;div class="section" id="id1"&gt;
-&lt;h4&gt;1800s&lt;/h4&gt;
+&lt;h3&gt;1800s&lt;/h3&gt;
 &lt;p&gt;It’s the 1800s. Code is beaten into submission through iterations of
 half-working attempts at hand-made deployments; with fear, because it
 works and we barely understand it, so don’t touch it because &lt;em&gt;it works&lt;/em&gt;;
@@ -47,7 +45,7 @@ what part of it is needed and what extra changes are needed to make it
 work.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="id2"&gt;
-&lt;h4&gt;Modern times&lt;/h4&gt;
+&lt;h3&gt;Modern times&lt;/h3&gt;
 &lt;p&gt;Nowadays software engineers understand that deploying software is hard,
 and so they must get very good at it and automate it with clean
 procedures so that it’s repeatable and debugable. They use continuous
@@ -58,11 +56,8 @@ software breaks, they know how to act.&lt;/p&gt;
 &lt;p&gt;Engineers build up trust: they can trust that the software works and
 that it does what it’s supposed to do; and the stakeholders trust them
 in that the product is built to their expectations.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 &lt;div class="section" id="what-you-need-to-implement-continuous-delivery"&gt;
-&lt;h2&gt;What You Need to implement Continuous Delivery&lt;/h2&gt;
+&lt;h4&gt;What You Need to implement Continuous Delivery&lt;/h4&gt;
 &lt;p&gt;To implement Continuous Delivery, you need the following:&lt;/p&gt;
 &lt;ul class="simple"&gt;
 &lt;li&gt;A team&lt;/li&gt;
@@ -72,8 +67,11 @@ in that the product is built to their expectations.&lt;/p&gt;
 &lt;li&gt;A way to rollback&lt;/li&gt;
 &lt;li&gt;An automated release&lt;/li&gt;
 &lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 &lt;div class="section" id="team"&gt;
-&lt;h3&gt;Team&lt;/h3&gt;
+&lt;h2&gt;Team&lt;/h2&gt;
 &lt;p&gt;Every single member of the Team must be committed to quality—process
 can’t compensate for lack of commitment. This commitment includes the
 constant learning of best practices and ways to improve.&lt;/p&gt;
@@ -96,7 +94,7 @@ that are used in Production and Staging.&lt;/p&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;div class="section" id="working-software"&gt;
-&lt;h3&gt;Working Software&lt;/h3&gt;
+&lt;h2&gt;Working Software&lt;/h2&gt;
 &lt;p&gt;Software, even software that &lt;em&gt;works&lt;/em&gt;, is not working software unless it
 has automated tests:&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -140,12 +138,12 @@ soon.&lt;/p&gt;
 branch.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="repeatable-build"&gt;
-&lt;h3&gt;Repeatable Build&lt;/h3&gt;
+&lt;h2&gt;Repeatable Build&lt;/h2&gt;
 &lt;p&gt;The build must be automated, and used by all members of the Team in all
 environments. The build process must contain no manual steps or changes.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="deployment-script"&gt;
-&lt;h3&gt;Deployment Script&lt;/h3&gt;
+&lt;h2&gt;Deployment Script&lt;/h2&gt;
 &lt;p&gt;As for the build, the deployment script must be automated and used by
 all members of the Team in all environments. Deploying the software
 should be accomplished by a single command:&lt;/p&gt;
@@ -161,12 +159,12 @@ to duplicate it and investigate what went wrong. Most of the time of
 fixing a problem is usually spent in searching its cause.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="rollback"&gt;
-&lt;h3&gt;Rollback&lt;/h3&gt;
+&lt;h2&gt;Rollback&lt;/h2&gt;
 &lt;p&gt;When a deployment fails it must be easy to rollback. There are many
 strategies to accomplish this, for example Blue-Green Deployments and
 Canary Deployments.&lt;/p&gt;
 &lt;div class="section" id="blue-green-deployments"&gt;
-&lt;h4&gt;Blue-Green Deployments&lt;/h4&gt;
+&lt;h3&gt;Blue-Green Deployments&lt;/h3&gt;
 &lt;p&gt;Have two separate environments: green is where the customers go when
 they go to Production; blue is not.&lt;/p&gt;
 &lt;ol class="arabic simple"&gt;
@@ -180,7 +178,7 @@ green and blue. It’s easy to investigate what went wrong because blue is
 still running the new code.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="canary-deployment"&gt;
-&lt;h4&gt;Canary Deployment&lt;/h4&gt;
+&lt;h3&gt;Canary Deployment&lt;/h3&gt;
 &lt;p&gt;Deploy the new version on a fraction of the servers and have it run
 alongside the old version. Once it’s confirmed that it works as
 expected, extend the deployment to the rest of the servers.&lt;/p&gt;
@@ -189,13 +187,13 @@ performance impact of new features.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="rollback-the-database"&gt;
-&lt;h3&gt;Rollback the Database&lt;/h3&gt;
+&lt;h2&gt;Rollback the Database&lt;/h2&gt;
 &lt;p&gt;For rollbacks to be possible, the database changes must be kept
 backwards compatible. There is no way around this. When this is not
 possible, make a plan on how to rollback.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="automated-release"&gt;
-&lt;h3&gt;Automated Release&lt;/h3&gt;
+&lt;h2&gt;Automated Release&lt;/h2&gt;
 &lt;p&gt;When all the previous steps are in place, an automated release is just
 the last step on the chain. While an automated release to Production may
 not be desirable in all cases, an automated release to a Staging or
@@ -207,18 +205,18 @@ have shorter Time to Recover: if it goes wrong it will be easier to find
 what went wrong if the amount of changes is small.&lt;/p&gt;
 &lt;p&gt;Releasing is hard. If it hurts, do it more often.&lt;/p&gt;
 &lt;div class="section" id="hidden-features"&gt;
-&lt;h4&gt;Hidden Features&lt;/h4&gt;
+&lt;h3&gt;Hidden Features&lt;/h3&gt;
 &lt;p&gt;In some cases it is useful to release features but keep them
 inaccessible or only accessible to a few users. There are several tools
 to make this easy;
-&lt;a class="reference external" href="https://medium.com/r/?url=https%3A%2F%2Fgithub.com%2Fdisqus%2Fgargoyle"&gt;gargoyle&lt;/a&gt;
+&lt;a class="reference external" href="https://github.com/disqus/gargoyle"&gt;gargoyle&lt;/a&gt;
 is a popular one for Django.&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div class="section" id="tips"&gt;
-&lt;h3&gt;Tips&lt;/h3&gt;
+&lt;h2&gt;Tips&lt;/h2&gt;
 &lt;div class="section" id="split-in-components"&gt;
-&lt;h4&gt;Split In Components&lt;/h4&gt;
+&lt;h3&gt;Split In Components&lt;/h3&gt;
 &lt;p&gt;Split your software in components that can be deployed independently.&lt;/p&gt;
 &lt;p&gt;A component:&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -232,29 +230,29 @@ system.&lt;/li&gt;
 responsibilities and makes understanding and changing the code easier.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="rehearse-releases"&gt;
-&lt;h4&gt;Rehearse Releases&lt;/h4&gt;
+&lt;h3&gt;Rehearse Releases&lt;/h3&gt;
 &lt;p&gt;Releasing is hard. Rehearse it and get very good at it.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="manage-your-infrastructure"&gt;
-&lt;h4&gt;Manage your Infrastructure&lt;/h4&gt;
+&lt;h3&gt;Manage your Infrastructure&lt;/h3&gt;
 &lt;p&gt;Write tests that verify that your infrastructure behaves as you expect
 and provides the necessary functionality.&lt;/p&gt;
 &lt;p&gt;Automate all infrastructure changes that can be automated, and document
 the rest.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="equal-environments"&gt;
-&lt;h4&gt;Equal Environments&lt;/h4&gt;
+&lt;h3&gt;Equal Environments&lt;/h3&gt;
 &lt;p&gt;All environments must be as similar as possible. Use
-&lt;a class="reference external" href="https://medium.com/r/?url=http%3A%2F%2Fwww.vagrantup.com%2F"&gt;vagrant&lt;/a&gt;
+&lt;a class="reference external" href="http://www.vagrantup.com/"&gt;vagrant&lt;/a&gt;
 to develop.&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="automate-everything"&gt;
-&lt;h4&gt;Automate Everything&lt;/h4&gt;
+&lt;h3&gt;Automate Everything&lt;/h3&gt;
 &lt;p&gt;A process that is automated is repeatable and easier to debug. Automate
 everything that can be automated.&lt;/p&gt;
 &lt;hr class="docutils" /&gt;
 &lt;p&gt;I gave a talk about this at DjangoCon Europe 2013. Here are the
-&lt;a class="reference external" href="https://medium.com/r/?url=https%3A%2F%2Fbitbucket.org%2Fgrimborg%2Fcontinuousdeployment%2Fsrc%2Ftip%2Fcontinuous-deployment.pdf"&gt;slides&lt;/a&gt;;
+&lt;a class="reference external" href="https://bitbucket.org/grimborg/continuousdeployment/src/tip/continuous-deployment.pdf"&gt;slides&lt;/a&gt;;
 the video will be available soon.&lt;/p&gt;
 &lt;p&gt;If this interests you, you may want to check these books:&lt;/p&gt;
 &lt;ul class="simple"&gt;
@@ -263,7 +261,6 @@ the video will be available soon.&lt;/p&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Agile-Testing-Practical-Guide-Testers/dp/0321534468/ref=sr_1_1?ie=UTF8&amp;amp;qid=1369905098&amp;amp;sr=8-1"&gt;Agile Testing: A Practical Guide for Testers and Agile Team&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="reference external" href="http://www.amazon.com/Test-Driven-Development-Kent-Beck/dp/0321146530/ref=sr_1_1?s=books&amp;amp;ie=UTF8&amp;amp;qid=1369905116&amp;amp;sr=1-1"&gt;Test Driven Development: By Example&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 </summary><category term="agile"></category><category term="continuous delivery"></category><category term="deployment"></category><category term="release"></category><category term="testing"></category><category term="qa"></category></entry><entry><title>Using Debian packages for Python deployments</title><link href="http://developer.paylogic.com/articles/debian-packages.html" rel="alternate"></link><updated>2013-05-14T00:28:00+02:00</updated><author><name>Peter Odding</name></author><id>tag:developer.paylogic.com,2013-05-14:articles/debian-packages.html</id><summary type="html">&lt;p&gt;At Paylogic we use Debian packages to deploy our Python applications. This
