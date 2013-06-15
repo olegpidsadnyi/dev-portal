@@ -203,7 +203,7 @@ cat &gt; DEBIAN/control <span class="s">&lt;&lt; EOF</span>
 <span class="nv">NAME</span><span class="o">=</span><span class="k">$(</span>awk <span class="s1">&#39;/^Package:/ {print $2}&#39;</span> DEBIAN/control<span class="k">)</span>
 <span class="nv">VERSION</span><span class="o">=</span><span class="k">$(</span>awk <span class="s1">&#39;/^Version:/ {print $2}&#39;</span> DEBIAN/control<span class="k">)</span>
 <span class="nv">ARCH</span><span class="o">=</span><span class="k">$(</span>awk <span class="s1">&#39;/^Architecture:/ {print $2}&#39;</span> DEBIAN/control<span class="k">)</span>
-dpkg-deb --build . <span class="nv">$NAME</span>-<span class="k">${</span><span class="nv">VERSION</span><span class="k">}</span>_<span class="nv">$ARCH</span>.deb
+dpkg-deb --build . <span class="nv">$NAME_</span><span class="k">${</span><span class="nv">VERSION</span><span class="k">}</span>_<span class="nv">$ARCH</span>.deb
 </pre></div>
 <p>Assuming you're on a Debian/Ubuntu system, the above commands should be enough
 to build a simple package. Any files in the working directory (excluding the

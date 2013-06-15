@@ -394,7 +394,7 @@ cat &amp;gt; DEBIAN/control &lt;span class="s"&gt;&amp;lt;&amp;lt; EOF&lt;/span&
 &lt;span class="nv"&gt;NAME&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;awk &lt;span class="s1"&gt;&amp;#39;/^Package:/ {print $2}&amp;#39;&lt;/span&gt; DEBIAN/control&lt;span class="k"&gt;)&lt;/span&gt;
 &lt;span class="nv"&gt;VERSION&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;awk &lt;span class="s1"&gt;&amp;#39;/^Version:/ {print $2}&amp;#39;&lt;/span&gt; DEBIAN/control&lt;span class="k"&gt;)&lt;/span&gt;
 &lt;span class="nv"&gt;ARCH&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;awk &lt;span class="s1"&gt;&amp;#39;/^Architecture:/ {print $2}&amp;#39;&lt;/span&gt; DEBIAN/control&lt;span class="k"&gt;)&lt;/span&gt;
-dpkg-deb --build . &lt;span class="nv"&gt;$NAME&lt;/span&gt;-&lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;VERSION&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;_&lt;span class="nv"&gt;$ARCH&lt;/span&gt;.deb
+dpkg-deb --build . &lt;span class="nv"&gt;$NAME_&lt;/span&gt;&lt;span class="k"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;VERSION&lt;/span&gt;&lt;span class="k"&gt;}&lt;/span&gt;_&lt;span class="nv"&gt;$ARCH&lt;/span&gt;.deb
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Assuming you're on a Debian/Ubuntu system, the above commands should be enough
 to build a simple package. Any files in the working directory (excluding the
