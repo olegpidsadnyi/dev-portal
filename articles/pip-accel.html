@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+                    <title>pip-accel: Accelerator for pip, the Python package manager - Paylogic developer portal</title>
+            <meta charset="utf-8">
+            
+                            <link href="http://dev-portal.paylogic.eu/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="Paylogic development portal Full Atom Feed">
+                        
+                        
+                        
+                        
+                            <link href="http://dev-portal.paylogic.eu/feeds/devops.atom.xml" type="application/atom+xml" rel="alternate" title="Paylogic development portal Categories Atom Feed">
+                        
+                        
+                        
+            
+            <!-- Bookmark icon -->
+            <link rel="shortcut icon" href="http://dev-portal.paylogic.eu/static/images/favicon.ico">
+
+            <!-- Twitter Bootstrap -->
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+            <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+
+            <!-- Custom Paylogic Bootstrap theme -->
+            <link rel="stylesheet" type="text/css" href="http://dev-portal.paylogic.eu/theme/css/bootstrap-paylogic.css">
+            <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.1/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+            <!-- Devportal specific style tweaks -->
+            <link rel="stylesheet" type="text/css" href="http://dev-portal.paylogic.eu/theme/css/style.css">
+            </head>
+
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="navbar-inner">
+                <div class="with-gutter">
+                    <a class="brand" href="/">Paylogic</a>
+                    <a href="/" class="brand-text">development portal</a>
+
+                    <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+
+                    <div class="nav-collapse collapse">
+                        <ul class="nav pull-right">
+                                                        
+                                                                                                <li><a href="http://dev-portal.paylogic.eu/">Welcome</a></li>
+                                                                    <li><a href="http://dev-portal.paylogic.eu/pages/authors.html">Authors</a></li>
+                                                                    <li><a href="http://dev-portal.paylogic.eu/pages/about.html">About</a></li>
+                                                                                        
+                            <li class="dropdown">
+                                <a href="dropdown-toggle" role="button" data-toggle="dropdown"
+                                data-target="#">
+                                    Categories <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                                                                                                        <li><a href="http://dev-portal.paylogic.eu/category/agile.html">Agile</a></li>
+                                                                                    <li class="active"><a href="http://dev-portal.paylogic.eu/category/devops.html">DevOps</a></li>
+                                                                                
+                                </ul>
+                            </li> 
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="wrapper with-gutter container-fluid">
+            <div class="row-fluid">
+                    <section id="content" class="body">
+        <article>
+            <header>
+                <h1 class="entry-title">pip-accel: Accelerator for pip, the Python package manager</h1>
+            </header>
+
+            <div class="entry-content">
+                <p>Recently we published <a class="reference external" href="https://github.com/paylogic/pip-accel">pip-accel</a> to <a class="reference external" href="https://github.com/paylogic/pip-accel">GitHub</a> and <a class="reference external" href="https://pypi.python.org/pypi/pip-accel">PyPI</a>, in this article we'll
+tell you why and how we created this project.</p>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#introduction" id="id1">Introduction</a></li>
+<li><a class="reference internal" href="#at-paylogic-we-deploy-our-code-bases-a-lot" id="id2">At Paylogic we deploy our code bases a lot</a><ul>
+<li><a class="reference internal" href="#python-deployment-strategies" id="id3">Python deployment strategies</a><ul>
+<li><a class="reference internal" href="#drawbacks-of-virtual-environments" id="id4">Drawbacks of virtual environments</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#big-projects-have-a-lot-of-dependencies" id="id5">Big projects have a lot of dependencies</a></li>
+<li><a class="reference internal" href="#pip-can-be-slow-and-unreliable" id="id6">pip can be slow and unreliable</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#optimizing-pip" id="id7">Optimizing pip</a><ul>
+<li><a class="reference internal" href="#brute-force-caching" id="id8">Brute force caching</a></li>
+<li><a class="reference internal" href="#so-what-about-a-more-granular-approach" id="id9">So what about a more granular approach?</a><ul>
+<li><a class="reference internal" href="#keeping-pip-off-the-internet" id="id10">Keeping pip off the internet</a></li>
+<li><a class="reference internal" href="#caching-compiled-packages" id="id11">Caching compiled packages</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#putting-it-all-together-pip-accel" id="id12">Putting it all together: pip-accel</a><ul>
+<li><a class="reference internal" href="#how-fast-is-it" id="id13">How fast is it?</a></li>
+<li><a class="reference internal" href="#more-information" id="id14">More information</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#related-projects" id="id15">Related projects</a></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id1">Introduction</a></h2>
+<p>The pip-accel program is a wrapper for <a class="reference external" href="http://www.pip-installer.org/">pip</a>, the Python package manager. It
+accelerates the usage of pip to initialize Python <a class="reference external" href="http://www.virtualenv.org/en/latest/">virtual environments</a> given
+one or more <a class="reference external" href="http://www.pip-installer.org/en/latest/cookbook.html#requirements-files">requirements</a> files. It does so by combining the following two
+approaches:</p>
+<ol class="arabic simple">
+<li>Source distribution downloads are cached and used to generate a local index
+of source distribution archives. If all your dependencies are pinned to
+absolute versions whose source distribution downloads were previously
+cached, pip-accel won't need a network connection at all! This is one of the
+reasons why pip can be so slow: given absolute pinned dependencies available
+in the download cache it will still scan PyPI (the online Python package
+index) and distribution websites.</li>
+<li>Binary distributions are used to speed up the process of installing
+dependencies with binary components (like M2Crypto and LXML). Instead of
+recompiling these dependencies again for every virtual environment we
+compile them once and cache the result as a binary <tt class="docutils literal">*.tar.gz</tt>
+distribution.</li>
+</ol>
+<p>In the rest of this article we will discuss why pip-accel was created and dive
+into the particulars of how it works. At the end we'll also look at some
+related projects.</p>
+</div>
+<div class="section" id="at-paylogic-we-deploy-our-code-bases-a-lot">
+<h2><a class="toc-backref" href="#id2">At Paylogic we deploy our code bases a lot</a></h2>
+<p>Currently we have the following environments where we deploy our code bases:</p>
+<ul class="simple">
+<li>Work laptops of the engineers and devops</li>
+<li>Continuous integration server with 10 slaves (we are using <a class="reference external" href="http://jenkins-ci.org/">Jenkins</a>)</li>
+<li>Stable testing environment (continuously deployed)</li>
+<li>Staging testing environment (managed w/ releases)</li>
+<li>Production servers</li>
+</ul>
+<p>In some of these environments (specifically in the continuous integration and
+stable environments) new code bases can be deployed every few minutes when
+engineers are publishing new changes or tested changes are being merged into
+the main repository.</p>
+<div class="section" id="python-deployment-strategies">
+<h3><a class="toc-backref" href="#id3">Python deployment strategies</a></h3>
+<p>For Python deployments there are two main ways to deploy a project and its dependencies:</p>
+<ol class="arabic simple">
+<li>System-wide installation</li>
+<li><a class="reference external" href="http://www.virtualenv.org/en/latest/">Virtual environments</a> (or an equivalent construction, isolated from the system)</li>
+</ol>
+<p>At Paylogic we use system-wide installations on production (like) hosts and
+virtual environments everywhere else. Why don't we use virtual environments on
+production systems? Virtual environments do have some drawbacks (see below) and
+we have the luxury of being able to isolate applications on the level of
+virtual machines instead of Python virtual environments. This additional layer
+of isolation is worth it for us.</p>
+<div class="section" id="drawbacks-of-virtual-environments">
+<h4><a class="toc-backref" href="#id4">Drawbacks of virtual environments</a></h4>
+<p>Python virtual environments are by their nature a bit fragile. Quoting from
+<a class="reference external" href="http://virtualenv.org/en/latest/news.html">the virtualenv website</a>:</p>
+<blockquote>
+<strong>Warning:</strong> <em>Python bugfix releases 2.6.8, 2.7.3, 3.1.5 and 3.2.3 include
+a change that will cause import random to fail with “cannot import name
+urandom” on any virtualenv created on a Unix host with an earlier release
+of Python 2.6/2.7/3.1/3.2, if the underlying system Python is upgraded.
+This is due to the fact that a virtualenv uses the system Python’s standard
+library but contains its own copy of the Python interpreter, so an upgrade
+to the system Python results in a mismatch between the version of the
+Python interpreter and the version of the standard library. It can be fixed
+by removing $ENV/bin/python and re-running virtualenv on the same
+target directory with the upgraded Python.</em></blockquote>
+</div>
+</div>
+<div class="section" id="big-projects-have-a-lot-of-dependencies">
+<h3><a class="toc-backref" href="#id5">Big projects have a lot of dependencies</a></h3>
+<p>At Paylogic we create large virtual environments with <a class="reference external" href="http://www.pip-installer.org/">pip</a>: At the time of
+writing our main code base has 84 dependencies if we include testing,
+documentation and transitive dependencies (43 of those dependencies are required
+in production). Some of these dependencies require SWIG and a compiler and for
+large modules the compilation can take a while.</p>
+</div>
+<div class="section" id="pip-can-be-slow-and-unreliable">
+<h3><a class="toc-backref" href="#id6">pip can be slow and unreliable</a></h3>
+<p>So we build a lot of virtual environments, which can be really slow. The actual
+creation of the environment only takes a couple of seconds, but installing all
+of the dependencies can take minutes! For example at the time of writing it
+takes about seven minutes to install all dependencies of Paylogic's main code
+base using <a class="reference external" href="http://www.pip-installer.org/">pip</a>.</p>
+<p>What's worse is that PyPI and distribution websites can be very unreliable.
+One day everything works fine, the next day the same packages you downloaded
+previously can no longer be downloaded. Usually these are transient errors, you
+just have to be very patient and/or retry until it works.</p>
+<p>We love virtual environments and pip so we don't necessarily need to replace
+either of those, but it would be nice to solve these two problems.</p>
+</div>
+</div>
+<div class="section" id="optimizing-pip">
+<h2><a class="toc-backref" href="#id7">Optimizing pip</a></h2>
+<p>In this section we'll discuss ways in which we can speed up pip.</p>
+<div class="section" id="brute-force-caching">
+<h3><a class="toc-backref" href="#id8">Brute force caching</a></h3>
+<p>If no requirements changed, we can re-use a previously built and cached virtual
+environment. <a class="reference external" href="https://pypi.python.org/pypi/terrarium">Terrarium</a> takes this approach. There is a drawback however: If a
+single dependency changes, we can't re-use the cache and have to rebuild
+everything. This is not exactly ideal for continuous integration/deployment
+environments (which is a big use case for us).</p>
+</div>
+<div class="section" id="so-what-about-a-more-granular-approach">
+<h3><a class="toc-backref" href="#id9">So what about a more granular approach?</a></h3>
+<p>There are two obvious targets:</p>
+<ol class="arabic">
+<li><p class="first">Given absolute version numbers available in the download cache, <a class="reference external" href="http://www.pip-installer.org/">pip</a> still
+goes out and scans PyPI and distribution websites. This is documented
+behavior:</p>
+<blockquote>
+<p>pip offers a <tt class="docutils literal"><span class="pre">--download-cache</span></tt> option for installs to prevent redundant
+downloads of archives from PyPI. The point of this cache is not to
+circumvent the index crawling process, but to just prevent redundant
+downloads. Items are stored in this cache based on the url the archive
+was found at, not simply the archive name. If you want a fast/local
+install solution that circumvents crawling PyPI, see the <a class="reference external" href="http://www.pip-installer.org/en/latest/cookbook.html#fast-local-installs">Fast &amp; Local
+Installs</a> Cookbook entry.</p>
+</blockquote>
+</li>
+<li><p class="first">Binary packages are recompiled for every virtual environment. This is
+because historically <a class="reference external" href="http://www.pip-installer.org/">pip</a> did not support binary distributions (support for
+the <a class="reference external" href="http://wheel.readthedocs.org/en/latest/">Wheel</a> format is now coming) so the only option was to go for source
+packages, which require compilation. However there is of course no reason
+why previous results can not be reused.</p>
+</li>
+</ol>
+<div class="section" id="keeping-pip-off-the-internet">
+<h4><a class="toc-backref" href="#id10">Keeping pip off the internet</a></h4>
+<p>Our first problem was that pip's index crawling process is very slow, so we
+want to avoid it when possible. So how can we keep <a class="reference external" href="http://www.pip-installer.org/">pip</a> from always scanning
+PyPI and distribution websites when all of the dependencies are already
+available in the local download cache? Here's how:</p>
+<ol class="arabic">
+<li><p class="first">We generate a local source package index based on the <a class="reference external" href="http://www.pip-installer.org/">pip</a> download cache.
+This local source package index is just a directory with source packages
+downloaded from PyPI and distribution websites.</p>
+</li>
+<li><p class="first">We then run <a class="reference external" href="http://www.pip-installer.org/">pip</a> as follows:</p>
+<div class="highlight"><pre><span class="nv">$ </span>pip install --no-index --find-links<span class="o">=</span>file://<span class="nv">$LOCAL_INDEX</span> --requirement<span class="o">=</span>example.txt
+</pre></div>
+<p>If the command succeeds it means all of the requirements (including the
+transitive dependencies) can be satisfied from the local index. In this case
+we don't need a network connection!</p>
+</li>
+</ol>
+</div>
+<div class="section" id="caching-compiled-packages">
+<h4><a class="toc-backref" href="#id11">Caching compiled packages</a></h4>
+<p>Our second problem was that <a class="reference external" href="http://www.pip-installer.org/">pip</a> always recompiles binary modules. This isn't
+very hard to fix. Here's how you create a dumb binary distribution (a tar
+archive with binary artifacts specific to your current system):</p>
+<div class="highlight"><pre><span class="nv">$ </span>python setup.py bdist_dumb --format<span class="o">=</span>gztar
+</pre></div>
+<p>Unfortunately these distributions are really dumb:</p>
+<div class="highlight"><pre><span class="nv">$ </span>tar tf ipython-0.13.2.linux-x86_64.tar.gz | tail -n1 | <span class="nb">echo</span> <span class="s1">&#39;foo&#39;</span>
+./home/peter/.virtualenvs/pip-accel/lib/python2.6/site-packages/IPython/lib/security.py
+</pre></div>
+<p>Dumb binary distributions contain hard coded pathnames specific to the virtual
+environment we created them for! This is useless in any other context. Of
+course with a bit of work these pathnames can be normalized to the root of the
+(virtual) environment...</p>
+</div>
+</div>
+</div>
+<div class="section" id="putting-it-all-together-pip-accel">
+<h2><a class="toc-backref" href="#id12">Putting it all together: pip-accel</a></h2>
+<p>So now you know why and how <a class="reference external" href="https://github.com/paylogic/pip-accel">pip-accel</a> was born! It's available on <a class="reference external" href="https://pypi.python.org/pypi/pip-accel">PyPI</a> and
+<a class="reference external" href="https://github.com/paylogic/pip-accel">GitHub</a> but if you just want to try it out you can use the following:</p>
+<div class="highlight"><pre><span class="nv">$ </span>pip install pip-accel
+</pre></div>
+<p>The command <tt class="docutils literal"><span class="pre">pip-accel</span></tt> will be installed in your environment. You should be
+able to use it just like <a class="reference external" href="http://www.pip-installer.org/">pip</a>, simply type <tt class="docutils literal"><span class="pre">pip-accel</span></tt> where you would
+previously type <tt class="docutils literal">pip</tt> on the command line (you can even alias it if you
+like).</p>
+<div class="section" id="how-fast-is-it">
+<h3><a class="toc-backref" href="#id13">How fast is it?</a></h3>
+<p>To give you an idea of how effective <tt class="docutils literal"><span class="pre">pip-accel</span></tt> is, below are the results of
+a test to build a virtual environment for our main code base:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="48%" />
+<col width="16%" />
+<col width="22%" />
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head">Program</th>
+<th class="head">Description</th>
+<th class="head">Duration</th>
+<th class="head">Percentage</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>pip</td>
+<td>Default configuration</td>
+<td>444 seconds</td>
+<td>100% (baseline)</td>
+</tr>
+<tr><td>pip</td>
+<td>With download cache (first run)</td>
+<td>416 seconds</td>
+<td>94%</td>
+</tr>
+<tr><td>pip</td>
+<td>With download cache (second run)</td>
+<td>318 seconds</td>
+<td>72%</td>
+</tr>
+<tr><td>pip-accel</td>
+<td>First run</td>
+<td>397 seconds</td>
+<td>89%</td>
+</tr>
+<tr><td>pip-accel</td>
+<td>Second run</td>
+<td>30 seconds</td>
+<td>7%</td>
+</tr>
+</tbody>
+</table>
+<p>We have some ideas on how to make this even faster :-)</p>
+</div>
+<div class="section" id="more-information">
+<h3><a class="toc-backref" href="#id14">More information</a></h3>
+<p>If you're interested in more details about <tt class="docutils literal"><span class="pre">pip-accel</span></tt>, the readme on GitHub
+contains more information about the <a class="reference external" href="https://github.com/paylogic/pip-accel#control-flow-of-pip-accel">internal control flow</a>. You're also free
+to browse the <a class="reference external" href="https://github.com/paylogic/pip-accel/blob/master/pip_accel/__init__.py">source code</a>; it's only a few hundred lines of well documented
+Python code.</p>
+</div>
+</div>
+<div class="section" id="related-projects">
+<h2><a class="toc-backref" href="#id15">Related projects</a></h2>
+<p>There are a lot of projects that try to improve the Python deployment process
+and it is definitely worth looking around to evaluate your options:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://pypi.python.org/pypi/terrarium">Terrarium</a> generates and caches complete virtual environments, accomplishing
+some of the same goals as <tt class="docutils literal"><span class="pre">pip-accel</span></tt> but at a different granularity level</li>
+<li><a class="reference external" href="http://www.buildout.org/">Buildout</a> is about reliable and repeatable deployments just like
+<tt class="docutils literal"><span class="pre">pip-accel</span></tt> but it tackles non-Python applications as well, in effect
+reproducing complete deployment environments</li>
+<li>The <a class="reference external" href="http://doc.devpi.net/">devpi project</a> implements the server and client side of a Python
+cheese shop (package index) with lots of additional features to support
+Python package release, testing and installation activities</li>
+</ul>
+<!-- External references: -->
+</div>
+
+            </div> 
+
+                            <div class="comments">
+                    <h2>Comments</h2>
+                    <div id="disqus_thread"></div>
+                    <script type="text/javascript">
+                        var disqus_identifier = "articles/pip-accel.html";
+                        (function() {
+                            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                            dsq.src = 'http://paylogicdevportal.disqus.com/embed.js';
+                            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                        })();
+                    </script>
+                </div>
+                    </article>
+    </section>
+            </div>
+        </div>
+
+        <div class="footer container-fluid with-gutter">
+            <div class="row-fluid">
+                <p>
+                    Copyright (c) 2013 <a href="http://www.paylogic.com" target="_blank">Paylogic</a>,
+                    built using the awesome <a href="http://getpelican.com" target="_blank">Pelican</a> static site generator.<br>
+                    This work is licensed under the <a href="http://creativecommons.org/licenses/by-sa/3.0/">Creative Commons Attribution-ShareAlike 3.0 Unported License</a>.
+                </p>
+            </div>
+        </div>
+
+    </body>
+</html>

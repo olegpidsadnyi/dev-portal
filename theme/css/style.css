@@ -1,0 +1,97 @@
+/* Correct brand image */
+.brand {
+    background-image: url('/theme/img/paylogic.png') !important;
+}
+
+/* Dont give a margin to brand if this is not a mobile device. */
+@media screen and (min-width: 979px) {
+    .brand {
+        margin-left: -20px !important; 
+    }
+}
+
+/* Different header styles */
+h1, h2, h3, h4, h5, h6 {
+    margin-top: 20px;
+}
+
+h1 { font-size: 1.9em }
+h2 { font-size: 1.6em }
+h3 { font-size: 1.3em }
+h4 { font-size: 1.0em }
+h5 { font-size: 0.7em }
+h6 { font-size: 0.5em }
+
+/* Elements that get the .with-gutter class, get a gutter based on how big the
+ * screen (or actually the window) is.
+ */
+
+/* "Normal" screens (width > 1366px) */
+.with-gutter {
+    margin: 0 auto;
+    width: 50%;
+}
+
+/* Smaller screens */
+@media screen and (min-width: 980px) and (max-width: 1367px) {
+    .with-gutter {
+        width: 70%;
+    }
+}
+
+/* Tablets */
+@media screen and (min-width: 768px) and (max-width: 979px) {
+    .with-gutter {
+        width: 80%
+    }
+}
+
+/* Smaller tablets and phones */
+@media screen and (max-width: 767px) {
+    .with-gutter {
+        width: 100%
+    }
+}
+
+/* Nicer margin top */
+.wrapper { margin-top: -20px; }
+
+/* Article metadata */
+.post-info {
+    float: right;
+    color: #444;
+    padding-left: 15px;
+    margin-left: 5px;
+    border-left: 1px solid #ddd;
+}
+
+/* Footer stuff */
+.footer {
+    padding-top: 20px;
+    margin-top: 20px;
+    border-top: 1px solid #ddd;
+    text-align: center;
+    font-size: 0.9em;
+    color: #666;
+    font-family: Helvetica;
+}
+
+/* Remove post-list numbers */
+#post-list {
+    list-style-type: none;
+    padding-left: 0;
+    margin-left: 0;
+}
+
+/* Nicer pagination */
+.paginator {
+    margin-top: 20px;
+    color: #444;
+}
+
+/* Syntax highlighting based on th Earendel color scheme
+ * https://github.com/xolox/lua-lxsh/blob/master/src/colors/earendel.lua
+ */
+.highlight .c { color: #558817; }
+.highlight .s { color: #a8660d; }
+.highlight .nb { color: #2239a8; font-weight: bold; }
