@@ -259,6 +259,9 @@ gpg -abs -o Release.gpg Release
 <ul class="simple">
 <li>We cleanup generated files from previous runs because their presence
 corrupts the generated files</li>
+<li>We modify the output of <tt class="docutils literal"><span class="pre">dpkg-scanpackages</span></tt> to change for example
+<tt class="docutils literal">./test_1.0_all.deb</tt> to <tt class="docutils literal">test_1.0_all.deb</tt> (for some reason <tt class="docutils literal"><span class="pre">apt-get</span></tt>
+doesn't like <tt class="docutils literal">Packages</tt> files with leading <tt class="docutils literal">./</tt> fragments)</li>
 <li>We clear the <tt class="docutils literal">$LANG</tt> environment variable so that we are sure the
 <tt class="docutils literal">Release</tt> file is properly formatted regardless of the value of <tt class="docutils literal">$LANG</tt></li>
 <li>You need to have a private GPG key to sign the <tt class="docutils literal">Release</tt> file; if you don't
