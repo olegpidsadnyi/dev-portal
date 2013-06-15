@@ -261,7 +261,7 @@ archive with binary artifacts specific to your current system):</p>
 <div class="highlight"><pre><span class="nv">$ </span>python setup.py bdist_dumb --format<span class="o">=</span>gztar
 </pre></div>
 <p>Unfortunately these distributions are really dumb:</p>
-<div class="highlight"><pre><span class="nv">$ </span>tar tf ipython-0.13.2.linux-x86_64.tar.gz | tail -n1 | <span class="nb">echo</span> <span class="s1">&#39;foo&#39;</span>
+<div class="highlight"><pre><span class="nv">$ </span>tar tf ipython-0.13.2.linux-x86_64.tar.gz | tail -n1
 ./home/peter/.virtualenvs/pip-accel/lib/python2.6/site-packages/IPython/lib/security.py
 </pre></div>
 <p>Dumb binary distributions contain hard coded pathnames specific to the virtual

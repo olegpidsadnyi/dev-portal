@@ -405,7 +405,7 @@ archive with binary artifacts specific to your current system):&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;python setup.py bdist_dumb --format&lt;span class="o"&gt;=&lt;/span&gt;gztar
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Unfortunately these distributions are really dumb:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;tar tf ipython-0.13.2.linux-x86_64.tar.gz | tail -n1 | &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s1"&gt;&amp;#39;foo&amp;#39;&lt;/span&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nv"&gt;$ &lt;/span&gt;tar tf ipython-0.13.2.linux-x86_64.tar.gz | tail -n1
 ./home/peter/.virtualenvs/pip-accel/lib/python2.6/site-packages/IPython/lib/security.py
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Dumb binary distributions contain hard coded pathnames specific to the virtual
